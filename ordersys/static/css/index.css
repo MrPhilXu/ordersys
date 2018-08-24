@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* a {
+    text-decoration: none;
+    /* color: #ffffff; */
+    font-size: 20px;
+}
+
+.index {
+    height: 520px;
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+    /* background-image: url(../img/picture1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%; */
+}
+
+.header {
+    width: 100%;
+    height: 40%;
+    font-size: 30px;
+    text-align: center;
+    /* padding: 40px 25px; */
+    line-height: 208px;
+    background-image: url(../img/picture1.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: #000000;
+}
+
+.middle {
+    width: 100%;
+    height: 40%;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    /* background-color: #77e1fc; */
+}
+
+
+/* .middle p {
+    padding: 20px 0px 10px 200px;
+} */
+
+
+/* .low {
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+    background: #ffffff;
+} */
+
+.loginbtn {
+    width: 80%;
+    height: 20%;
+    background: #46a3ff;
+    font-size: 25px;
+    /* border-radius: 20px; */
+    margin: 15px 15px;
+    color: #ffffff;
+}
+
+.loginbtn:hover {
+    background: #9bf3b1;
+}
+
+.registerbtn {
+    width: 80%;
+    height: 20%;
+    background: #46a3ff;
+    font-size: 25px;
+    /* border-radius: 20px; */
+    margin-top: 10px;
+    color: #ffffff
+}
+
+.registerbtn:hover {
+    background: #9bf3b1;
+}
+
+.foot {
+    width: 100%;
+    height: 20%;
+    font-size: 20px;
+    /* line-height: 110px; */
+    text-align: center;
+}

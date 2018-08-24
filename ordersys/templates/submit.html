@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>预约项目</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script>
+        var today = new Date(),
+            year = today.getFullYear(),
+            month = today.getMonth() + 1, //月
+            date = today.getDate() - 1; //日
+    </script>
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>预约系统欢迎你</h1>
+        </div>
+        <div class="container1">
+            <form action="/submit/" method="post" name="form" onsubmit="return check()">
+                <div class="one ">
+                    <select id="project" class="project {% if login_form.errors.project %}errorput{% endif %}" name="project">
+                    <option value="project1">项目一</option>
+                    <option value="project2">项目二</option>
+                </select></br>
+                    <!-- <form method="POST" action="" name="dateform" id="dateform"> -->
+                    <select id="gettime" class="gettime {% if login_form.errors.date %}errorput{% endif %}" name="date">
+                            <option value="0" selected="selected">请选择日期</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select></br>
+                    <!-- </form> -->
+                </div>
+               <!--  {% for item in user_list %}
+                <p>{{ item.date }}</p>
+                <p>{{ item.time }}</p>
+                {% endfor %} -->
+
+                <div class="two ">
+                    <!-- <form id="functionForm" method="post" action=""> -->
+                    <table class="table table-bordered table-hover " id="table" cellspacing="0">
+                        <tr class="time1">
+                            <td>8:00-10:00</td>
+                            <td><input value="8:00-10:00" type="radio" id="checkAll" name="time" disabled="disabled" class="time {% if login_form.errors.time %}errorput{% endif %}" /></td>
+                        </tr>
+
+                        <tr class="time2">
+                            <td>10:00-12:00</td>
+                            <td><input value="10:00-12:00" type="radio" id="checkAll" name="time"  disabled="disabled" class="time {% if login_form.errors.time %}errorput{% endif %}" /></td>
+                        </tr>
+
+                        <tr class="time3">
+                            <td>14:00-16:00</td>
+                            <!--<td><input type="hidden"  name="buyNumber" value="40" >14:00-16:00</td>-->
+                            <td><input value="14:00-16:00" type="radio" id="checkAll" name="time"  disabled="disabled" class="time {% if login_form.errors.time %}errorput{% endif %}" /></td>
+                        </tr>
+
+                        <tr class="time4">
+                            <td>16:00-18:00</td>
+                            <!--<td><input type="hidden"  name="buyNumber" value="40" >16:00-18:00</td>-->
+                            <td><input value="16:00-18:00" type="radio" id="checkAll" name="time" disabled="disabled"  class="time {% if login_form.errors.time %}errorput{% endif %}" /></td>
+                        </tr>
+                    </table>
+                    <!-- </form> -->
+                </div>
+                <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+
+                <div class="three">
+                    <!-- <form id="sure"> -->
+                    <input type="submit" id="btnSubmit" class="btn btn-danger btn-xs" value="确   定">
+                    <!-- </form> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.onload = init;
+        var user_list = {{user_list|safe}};
+       
+        function init() {
+            var gettime = document.getElementById("gettime");
+            // var index = gettime.selectedIndex;
+            //  console.log(index);
+            setTimeout(function() {
+                for (var i = 1; i <= 5; i++) {
+                    date++;
+                    gettime.options[i].text = year + "年" + month + "月" + date + "日";
+                    // gettime.options[i].value = year + "年" + month + "月" + date + "日";
+                    gettime.options[i].value = year + "-" + month + "-" + date;
+                }
+            }, 1)
+            var btn = document.getElementById("btnSubmit"),
+                table = document.getElementById("table");
+                var trs=table.getElementsByTagName("tr");
+                var  times=table.getElementsByTagName("input");
+                var  len=times.length;
+            for(var k=0;k<trs.length;k++){
+                trs[k].onmouseover=function(){
+                    this.style.backgroundColor='rgba(7,17,27,0.3)';
+                }
+                trs[k].onmouseout=function(){
+                    this.style.backgroundColor='#ffffff';
+                }
+            }
+            gettime.onchange = function() {
+                    table.style.display = 'table';
+                    table.style.width = "240px";
+                    table.style.height = "130px";
+                    btn.style.display = 'inline';
+                    btn.style.textAlign = 'center';
+                    for(var m=0;m<len;m++){
+                        times[m].disabled="";
+                    }
+                     for(var n=0;n<user_list.length;n++){
+                            // console.log(n);// i为索引
+                            //console.log(user_list[n].date);
+                            // console.log(gettime.options[gettime.selectedIndex].value);
+                                    if(gettime.options[gettime.selectedIndex].value==user_list[n].date){
+                                        var a=user_list[n].time;
+                                         for(var j=0;j<len;j++){
+                                               if(times[j].value==a)  {
+                                                    times[j].disabled="disabled";
+                                                    // times[j].style.backgroundColor='#99cc33';
+                                               }
+                                         }
+                                      }
+                     }
+                    
+                }
+
+                // var sure = document.getElementById("sure");
+                // sure.onsubmit = function() {
+                //     table.style.display = 'none';
+                //     btn.style.display = 'none';
+                // }
+                btn.onclick = function() {
+                    var checks = document.forms[0].checkAll;
+                    for (var j = 0; j < checks.length; j++) {
+                        if (checks[j].checked) {
+                            return;
+                        } //else {
+                        //     alert("请选择预约时间！");
+                        // }
+                    }
+                    alert("请选择预约时间！");
+                }
+        }
+    </script>
+</body>
+</html>

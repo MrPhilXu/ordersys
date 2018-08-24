@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.submit {
+    height: 550px;
+    width: 350px;
+    margin: 0 auto;
+}

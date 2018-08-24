@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../static/css/login.css">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/dist/css/bootstrap-datepicker3.min.css">
+
+</head>
+
+<body>
+    <div class="login">
+        <div class="header">
+            预约系统欢迎您
+        </div>
+        <div class="main">
+            <form action="/submit/" method="post" name="form" onsubmit="return check()">
+                <div class="form">
+                    <!-- <div class="name {% if login_form.errors.user %}errorput{% endif %}">
+                        <span>姓名：</span>
+                        <input type="text" name="user">
+                        <span> </span>
+                    </div> -->
+                    <!-- <hr> -->
+                    <!-- <div class="tel {% if login_form.errors.tel %}errorput{% endif %}">
+                        <span>电话：</span>
+                        <input type="tel" name="tel" placeholder="预约后将有专人与你联系">
+                    </div>
+                    <hr> -->
+                    <div class="project {% if login_form.errors.project %}errorput{% endif %}">
+                        <span>预约项目：</span>
+                        <input type="text" name="project">
+                    </div>
+                    <hr>
+                    <div class="date {% if login_form.errors.date %}errorput{% endif %}">
+                        <span>优先预约日期：</span>
+                        <input type="date" name="date">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5" id="sandbox-container"><input type="text" class="form-control"> </div>
+                    </div>
+                    <hr>
+                    <div class="time {% if login_form.errors.time %}errorput{% endif %}">
+                        <span>优先预约时间：</span>
+                        <input type="time" name="time">
+                    </div>
+                    <hr>
+                    <div class="remarks {% if login_form.errors.remarks %}errorput{% endif %}">
+                        <span>备注：</span>
+                        <input type="text" name="remarks" placeholder="请输入留言信息">
+                    </div>
+                    <hr>
+                    <div class="error btns login-form-tips" id="jsLoginTips">{% for key,error in login_form.errors.items %}{{ error }}{% endfor %}{{ msg }}</div>
+
+                </div>
+                <div class="btn">
+                    <input type="Submit" name="提交" property="tokenNote" onclick=check "()" class="submitBtn" />
+                    <!-- <input type="Reset" name="重置" class="resetBtn"> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // function check() {
+        //     var name = document.getElementById("name");
+        //     if (name == "") {
+        //         alert("必填项，请重新输入!");
+        //         return false;
+        //     }
+        // }
+        // function tab(dayNum) {
+        //     var name = document.getElementById("date");
+        //     var weeks = ["日", "一", "二", "三", "四", "五", "六"],
+        //         today = new Date(),
+        //         year = today.getFullYear(),
+        //         month = today.getMonth() + 1,
+        //         day = today.getDate(),
+        //         week = today.getDay();
+        // if(d1>year){}
+        // if(d2>month){}
+        // if(d3>day+7){}
+        $('#sandbox-container input').datepicker({
+            language: "zh-CN"
+        });
+    </script>
+    <script src="/static/dist/js/bootstrap-datepicker.js"></script>
+    <script src="/static/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+</body>
+
+</html>

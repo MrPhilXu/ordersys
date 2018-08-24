@@ -25,7 +25,7 @@ SECRET_KEY = 'b^ri98=bm#mzsy@)ppdn8uwpz_pc8x$d218l&5tdzm_ky-p2pl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -50,12 +51,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ordersys.urls'
+AUTH_USER_MODEL = "order.UserProfile"
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'ordersys.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'health_assessment',
+        'USER':'root',                   #数据库登录用户名，一般为有权限更改数据库的用户名  
+        'PASSWORD':'Hfcas5591220',         #数据库登录密码
+        'HOST':"",         #数据库所在主机
+        'PORT':'3306'                   #数据库端口
     }
 }
 
@@ -104,18 +109,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.1/howto/static-files/
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
+
+EMAIL_HOST = "smtp.sina.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER ="djangoproject@sina.com"
+EMAIL_HOST_PASSWORD = "admin123"
+EMAIL_USE_TLS=False
+EMAIL_FROM = "djangoproject@sina.com"
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+CAPTCHA_IMAGE_SIZE = (100, 30)
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+# SERIALIZATION_MODULES = {
+#      'custom_json': 'proj.util.json_serializer',
+#         }
